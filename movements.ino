@@ -1,5 +1,4 @@
 String text; 
-String se = "hihi";
 
 #define m11 11    // موتور راست
 #define m12 12
