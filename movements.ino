@@ -1,4 +1,7 @@
-String text; 
+char text; 
+String se = "hihi";
+int counter =0;
+unsigned long startTime = 0;
 
 #define m11 11    // موتور راست
 #define m12 12
@@ -57,37 +60,42 @@ void setup() {
 } 
 
 void loop() {
-  while (Serial.available())
-  { 
-  delay(10); 
-  char c = Serial.read(); 
-  text += c; 
-  }  
-  if (text.length() > 0)
-  {
-    Serial.println(text); 
-    
-       if(text == "1")
-       {
-         forward();
-         
-        }  
-      else if(text == "4")
-      {
-        backward();
-      }
-      else if(text == "2")
-      {
-        right();
-      }
-      else if(text == "3")
-      {
-        left();
-      }
-      else{
-        Stop();
-        }
 
-text="";
-}
+  delay(10); 
+  text = Serial.read(); 
+
+  if(text !='1' && text !='2' && text !='3' && text !='4')
+  { 
+   if (millis() - startTime > 1000){
+    Stop();
+    }
+  }
+
+  
+  if (text=='1')
+  {
+    
+    forward();
+    startTime = millis(); 
+  }
+
+   else if (text=='4')
+  {
+    startTime = millis();
+    backward();
+  }
+
+   else if (text=='2')
+  {
+    startTime = millis();
+    right();
+  }
+
+   else if (text=='3')
+  {
+    startTime = millis();
+    left();
+  }
+
+  
 }
