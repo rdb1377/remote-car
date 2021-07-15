@@ -75,11 +75,8 @@ void loop() {
   compass.read();
 
   float heading1 = compass.heading();
-  float heading2 = compass.heading((LSM303::vector<int>){0, 0, 1});
-
-  Serial.print("Heading:  ");
-  Serial.println(heading1);
-  Serial.println(heading2);
+  String buf = String(heading1, 2);
+  Serial.println(sizeof(buf));
 
   delay(200);
    
